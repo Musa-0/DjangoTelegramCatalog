@@ -1,0 +1,165 @@
+{% load static %}
+{% load cache %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="{{description}}">
+	<meta name="keywords" content="{{keywords}}">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:image" content="https://tlgram-channels.com{%static 'img/logo.png'%}">
+    <meta property="og:description" content="{{description}}">
+    <meta http-equiv="refresh" content="100000; url=https://www.tlgram-channels.com/">
+	<title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="icon" href="{% static 'img/logo.ico' %}">
+    {% if request.is_secure %}
+    <link rel="canonical" href="{{canon}}">
+    {% endif %}
+</head>
+<body>
+<header>
+
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="d-lg-none d-block mr-4">
+                    <div class="burger"><span></span></div>
+                </div>
+                <div class="logo flex-shrink-0 py-3">
+                    <a href="/">
+                        <img src="{%static 'img/logo.png'%}" alt="logo">
+                    </a>
+                </div>
+                <nav class="nav_menu">
+                    <div class="container">
+                        <ul class="d-lg-flex align-items-center">
+                            <li><a href="/">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ul"
+                                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                     class="svg-inline--fa fa-list-ul fa-lg">
+                                    <path fill="currentColor"
+                                          d="M16 96C16 69.49 37.49 48 64 48C90.51 48 112 69.49 112 96C112 122.5 90.51 144 64 144C37.49 144 16 122.5 16 96zM480 64C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H192C174.3 128 160 113.7 160 96C160 78.33 174.3 64 192 64H480zM480 224C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H192C174.3 288 160 273.7 160 256C160 238.3 174.3 224 192 224H480zM480 384C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384H480zM16 416C16 389.5 37.49 368 64 368C90.51 368 112 389.5 112 416C112 442.5 90.51 464 64 464C37.49 464 16 442.5 16 416zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"></path>
+                                </svg>
+                                <span>Каталог</span></a></li>
+                            <li><a href="{% url 'chats' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 31.1c-141.4 0-255.1 93.12-255.1 208c0 49.62 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734c1.249 3 4.021 4.766 7.271 4.766c66.25 0 115.1-31.76 140.6-51.39c32.63 12.25 69.02 19.39 107.4 19.39c141.4 0 255.1-93.13 255.1-207.1S397.4 31.1 256 31.1zM127.1 271.1c-17.75 0-32-14.25-32-31.1s14.25-32 32-32s32 14.25 32 32S145.7 271.1 127.1 271.1zM256 271.1c-17.75 0-31.1-14.25-31.1-31.1s14.25-32 31.1-32s31.1 14.25 31.1 32S273.8 271.1 256 271.1zM383.1 271.1c-17.75 0-32-14.25-32-31.1s14.25-32 32-32s32 14.25 32 32S401.7 271.1 383.1 271.1z"/>
+                                </svg>
+                                <span>Чаты</span></a></li>
+                            <li><a href="{% url 'bots' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                    <path d="M9.375 233.4C3.375 239.4 0 247.5 0 256v128c0 8.5 3.375 16.62 9.375 22.62S23.5 416 32 416h32V224H32C23.5 224 15.38 227.4 9.375 233.4zM464 96H352V32c0-17.62-14.38-32-32-32S288 14.38 288 32v64H176C131.8 96 96 131.8 96 176V448c0 35.38 28.62 64 64 64h320c35.38 0 64-28.62 64-64V176C544 131.8 508.3 96 464 96zM256 416H192v-32h64V416zM224 296C201.9 296 184 278.1 184 256S201.9 216 224 216S264 233.9 264 256S246.1 296 224 296zM352 416H288v-32h64V416zM448 416h-64v-32h64V416zM416 296c-22.12 0-40-17.88-40-40S393.9 216 416 216S456 233.9 456 256S438.1 296 416 296zM630.6 233.4C624.6 227.4 616.5 224 608 224h-32v192h32c8.5 0 16.62-3.375 22.62-9.375S640 392.5 640 384V256C640 247.5 636.6 239.4 630.6 233.4z"/>
+                                </svg>
+                                <span>Боты</span></a></li>
+                            <li><a href="{% url 'articles' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M480 32H128C110.3 32 96 46.33 96 64v336C96 408.8 88.84 416 80 416S64 408.8 64 400V96H32C14.33 96 0 110.3 0 128v288c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64V64C512 46.33 497.7 32 480 32zM272 416h-96C167.2 416 160 408.8 160 400C160 391.2 167.2 384 176 384h96c8.836 0 16 7.162 16 16C288 408.8 280.8 416 272 416zM272 320h-96C167.2 320 160 312.8 160 304C160 295.2 167.2 288 176 288h96C280.8 288 288 295.2 288 304C288 312.8 280.8 320 272 320zM432 416h-96c-8.836 0-16-7.164-16-16c0-8.838 7.164-16 16-16h96c8.836 0 16 7.162 16 16C448 408.8 440.8 416 432 416zM432 320h-96C327.2 320 320 312.8 320 304C320 295.2 327.2 288 336 288h96C440.8 288 448 295.2 448 304C448 312.8 440.8 320 432 320zM448 208C448 216.8 440.8 224 432 224h-256C167.2 224 160 216.8 160 208v-96C160 103.2 167.2 96 176 96h256C440.8 96 448 103.2 448 112V208z"/>
+                                </svg>
+                                <span>Статьи</span></a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div>
+                <form action="{% url 'search' %}" class="search_form d-flex align-items-center ml-2" method="get">
+                    <button type="submit">
+                        <svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px"
+                             xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M19.4271164,20.4271164 C18.0372495,21.4174803 16.3366522,22 14.5,22 C9.80557939,22 6,18.1944206 6,13.5 C6,8.80557939 9.80557939,5 14.5,5 C19.1944206,5 23,8.80557939 23,13.5 C23,15.8472103 22.0486052,17.9722103 20.5104077,19.5104077 L26.5077736,25.5077736 C26.782828,25.782828 26.7761424,26.2238576 26.5,26.5 C26.2219324,26.7780676 25.7796227,26.7796227 25.5077736,26.5077736 L19.4271164,20.4271164 L19.4271164,20.4271164 Z M14.5,21 C18.6421358,21 22,17.6421358 22,13.5 C22,9.35786417 18.6421358,6 14.5,6 C10.3578642,6 7,9.35786417 7,13.5 C7,17.6421358 10.3578642,21 14.5,21 L14.5,21 Z"/>
+                        </svg>
+                    </button>
+                    <input type="text" placeholder="Поиск..." name="text" required>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</header>
+<main>
+    {% block content %}
+
+    {% endblock content %}
+    <div class="d-flex align-items-center justify-content-center mt-4">
+
+
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="nav_pagi_arrow nav_pagi-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                <path d="M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z"/>
+            </svg>
+        </a>
+        {% endif %}
+        <div class="nav_pagi">
+
+            {% for p in paginator.page_range %}
+            {% if p == page_obj.number %}
+            <a class="nav_pagi-active">{{ p }}</a>
+            {% elif p >= page_obj.number|add:-3 and p <= page_obj.number|add:3 %}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="nav_pagi_arrow nav_pagi-next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                <path d="M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z"/>
+            </svg>
+        </a>
+        {% endif %}
+
+
+    </div>
+    <section>
+        <div class="container">
+            <h2>Рекомендуем почитать</h2>
+            <div id="fade-slide" class="slide-articles mx-n2">
+                {%for i in articles%}
+                <div>
+                    <a href="{{i.get_absolute_url}}" class="column-inner mx-2">
+                        <div class="column-thumb_article">
+                            <img src="{{i.preview}}" alt="" style="height: 90%;">
+                        </div>
+                        <div>
+                            <div class="channel-title_article">{{i.name}}</div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-auto">
+                            <div class="d-flex align-items-center">
+                                Читать далее
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M502.6 278.6l-128 128c-12.51 12.51-32.76 12.49-45.25 0c-12.5-12.5-12.5-32.75 0-45.25L402.8 288H32C14.31 288 0 273.7 0 255.1S14.31 224 32 224h370.8l-73.38-73.38c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l128 128C515.1 245.9 515.1 266.1 502.6 278.6z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {%endfor%}
+
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-md-between justify-content-center mx-n2">
+            <div class="m-2 order-md-1 order-2">
+                <p>© 2022 tlgrm-channels.ru — поиск в Telegram</p>
+            </div>
+            <div class="footer_link m-2 order-md-2 order-1">
+                <a href="#">Для правообладателей</a>
+                <a href="https://t.me/tlgramchannels_bot">Связаться с техподдержкой</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
